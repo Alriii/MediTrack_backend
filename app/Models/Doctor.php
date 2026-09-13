@@ -14,4 +14,20 @@ class Doctor extends Model
         'doctor_address',
         'doctor_city',
     ];
+
+    public function appointments()
+    {
+    return $this->hasMany(Appointment::class);
+    }
+
+    public function medicalRecords()
+    {
+    return $this->hasMany(MedicalRecord::class);
+    }
+
+    public function vitalSigns()
+    {
+        return $this->hasMany(VitalSign::class);
+    }
+    
 }

@@ -13,4 +13,14 @@ class MedicalRecord extends Model
         'record_date',
         'notes',
     ];
+
+    public function patient()
+    {
+    return $this->belongsTo(Patient::class);
+    }
+
+    public function doctor()
+    {
+    return $this->belongsTo(Doctor::class);
+    }
 }

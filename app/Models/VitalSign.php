@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Appointment extends Model
+class VitalSign extends Model
 {
     protected $fillable = [
         'patient_id',
         'doctor_id',
-        'appointment_date',
-        'appointment_time',
-        'status',
-        'reason',
+        'record_date',
+        'blood_pressure',
+        'heart_rate',
+        'notes',
     ];
 
     public function patient()
