@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Doctor extends Model
+{
+    protected $fillable = [
+        'doctor_name',
+        'doctor_email',
+        'doctor_password',
+        'doctor_phone',
+        'doctor_address',
+        'doctor_city',
+    ];
+}
