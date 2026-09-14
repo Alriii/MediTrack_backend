@@ -19,6 +19,10 @@ services:
     ports:
       - "8000:8000"
 
+    # Wait for MySQL so the API can reach the database
+    depends_on:
+      - mysql
+
     # Keep the PHP container running
     command: php artisan serve --host=0.0.0.0 --port=8000
 

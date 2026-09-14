@@ -10,19 +10,19 @@ class VitalSignController extends Controller
 {
     public function index()
     {
-        return VitalSign::all();
+        return VitalSign::with(['patient', 'doctor'])->get();
     }
 
     public function store(Request $request)
     {
         $vitalSign = VitalSign::create($request->all());
 
-        return $vitalSign;
+        return $vitalSign->load(['patient', 'doctor']);
     }
 
     public function show($id)
     {
-        return VitalSign::findOrFail($id);
+        return VitalSign::with(['patient', 'doctor'])->findOrFail($id);
     }
 
     public function update(Request $request, $id)
@@ -31,7 +31,7 @@ class VitalSignController extends Controller
 
         $vitalSign->update($request->all());
 
-        return $vitalSign;
+        return $vitalSign->load(['patient', 'doctor']);
     }
 
     public function destroy($id)

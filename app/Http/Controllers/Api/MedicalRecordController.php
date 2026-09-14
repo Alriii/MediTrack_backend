@@ -10,19 +10,19 @@ class MedicalRecordController extends Controller
 {
     public function index()
     {
-        return MedicalRecord::all();
+        return MedicalRecord::with(['patient', 'doctor'])->get();
     }
 
     public function store(Request $request)
     {
         $medicalRecord = MedicalRecord::create($request->all());
 
-        return $medicalRecord;
+        return $medicalRecord->load(['patient', 'doctor']);
     }
 
     public function show($id)
     {
-        return MedicalRecord::findOrFail($id);
+        return MedicalRecord::with(['patient', 'doctor'])->findOrFail($id);
     }
 
     public function update(Request $request, $id)
@@ -31,7 +31,7 @@ class MedicalRecordController extends Controller
 
         $medicalRecord->update($request->all());
 
-        return $medicalRecord;
+        return $medicalRecord->load(['patient', 'doctor']);
     }
 
     public function destroy($id)

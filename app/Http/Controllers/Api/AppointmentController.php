@@ -10,19 +10,19 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        return Appointment::all();
+        return Appointment::with(['patient', 'doctor'])->get();
     }
 
     public function store(Request $request)
     {
         $appointment = Appointment::create($request->all());
 
-        return $appointment;
+        return $appointment->load(['patient', 'doctor']);
     }
 
     public function show($id)
     {
-        return Appointment::findOrFail($id);
+        return Appointment::with(['patient', 'doctor'])->findOrFail($id);
     }
 
     public function update(Request $request, $id)
@@ -31,7 +31,7 @@ class AppointmentController extends Controller
 
         $appointment->update($request->all());
 
-        return $appointment;
+        return $appointment->load(['patient', 'doctor']);
     }
 
     public function destroy($id)

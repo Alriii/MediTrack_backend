@@ -15,6 +15,10 @@ class Patient extends Model
         'patient_city',
     ];
 
+    protected $hidden = [
+        'patient_password',
+    ];
+
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
