@@ -1,0 +1,47 @@
+services:
+
+  # Docker service name called "app" for our Laravel backend
+  app:
+
+    # Build our own PHP environment using the Dockerfile
+    build:
+      context: .
+
+    # Folder inside the Docker container where our Laravel project will work
+    # working_dir = Working Directory
+    working_dir: /var/www/html
+
+    # Connect our current backend folder to the Docker folder
+    volumes:
+      - .:/var/www/html
+
+    # Connect port 8000 on our PC to port 8000 inside Docker
+    ports:
+      - "8000:8000"
+
+    # Keep the PHP container running
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  # Docker service name called "mysql" for our MediTrack database
+  mysql:
+
+    # MySQL 8.4 environment for our MediTrack database
+    image: mysql:8.4
+
+    # Settings given to MySQL when the container starts
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: MediTrack
+
+    # Connect MySQL port on our PC to MySQL port inside Docker
+    ports:
+      - "3307:3306"
+
+    # Keep the MySQL database data even if the container is removed
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+
+# Docker-managed storage for MySQL
+volumes:
+  mysql_data:
